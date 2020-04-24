@@ -6,12 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>937</width>
+    <width>1086</width>
     <height>636</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Interactive Brokers Trading Application</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normalon>appIcon.JPG</normalon>
+    <activeon>appIcon.JPG</activeon>
+   </iconset>
   </property>
   <property name="autoFillBackground">
    <bool>true</bool>
@@ -147,8 +153,12 @@
      <bool>true</bool>
     </property>
     <property name="columnCount">
-     <number>4</number>
+     <number>5</number>
     </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>80</number>
+    </attribute>
+    <column/>
     <column/>
     <column/>
     <column/>
@@ -170,14 +180,18 @@
      <bool>true</bool>
     </property>
     <property name="columnCount">
-     <number>4</number>
+     <number>5</number>
     </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>80</number>
+    </attribute>
+    <column/>
     <column/>
     <column/>
     <column/>
     <column/>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="shortWindowlbl">
     <property name="geometry">
      <rect>
       <x>25</x>
@@ -210,7 +224,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="longWindowlbl">
     <property name="geometry">
      <rect>
       <x>238</x>
@@ -299,7 +313,7 @@
     <column/>
     <column/>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="currentOrderlbl">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -312,13 +326,299 @@
      <string>Current Order:</string>
     </property>
    </widget>
+   <widget class="QLabel" name="priceStatslbl">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>0</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="text">
+     <string>Price Stats</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="currentPricelbl">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>70</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Current Price:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="longMAlbl">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>110</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Long MA:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="shortMAlbl">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>150</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Short MA:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="tradeStatslbl">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>300</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="text">
+     <string>Trade Stats</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="totalProfitlbl">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>360</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Total Profit: </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="avgProfitlbl">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>395</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Average Profit: </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="stdlbl">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>430</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Standard Deviation:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="maxProfitlbl">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>465</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Max Profit:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="minProfitlbl">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>500</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Min Profit:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="totalProfit">
+    <property name="geometry">
+     <rect>
+      <x>1025</x>
+      <y>360</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="avgProfit">
+    <property name="geometry">
+     <rect>
+      <x>1025</x>
+      <y>395</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="std">
+    <property name="geometry">
+     <rect>
+      <x>1025</x>
+      <y>430</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="maxProfit">
+    <property name="geometry">
+     <rect>
+      <x>1025</x>
+      <y>465</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="minProfit">
+    <property name="geometry">
+     <rect>
+      <x>1025</x>
+      <y>500</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="shortMA">
+    <property name="geometry">
+     <rect>
+      <x>1025</x>
+      <y>150</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="longMA">
+    <property name="geometry">
+     <rect>
+      <x>1025</x>
+      <y>110</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="currentPrice">
+    <property name="geometry">
+     <rect>
+      <x>1025</x>
+      <y>70</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="vol">
+    <property name="geometry">
+     <rect>
+      <x>1025</x>
+      <y>190</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="vollbl">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>190</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Volatility:</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>937</width>
+     <width>1086</width>
      <height>21</height>
     </rect>
    </property>

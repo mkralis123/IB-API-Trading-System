@@ -68,8 +68,9 @@ class TradingApp(TestWrapper, TestClient):
         
         #Create arrays to store the prices that buys and sells
         #were placed at. Useful for tracking profit per trade
-        self.long_trades = np.array([])
-        self.short_trades = np.array([])
+        self.long_trades = np.array([[],[]])
+        self.short_trades = np.array([[],[]])
+        self.tradeDist = np.array([])
         
         #pos and noOpenOrders will both serve as a logical que
         #orders can only be placed if noOpenOrders is True
@@ -277,10 +278,38 @@ class TradingApp(TestWrapper, TestClient):
             
             if (execution.side == "BOT") and (contract.symbol == self.contract.symbol):
                 
-                self.long_trades = np.insert(self.long_trades, len(self.long_trades), (execution.price))
+                size = np.shape(self.long_trades)
+                
+                self.long_trades = np.insert(self.long_trades, size[1], 
+                                             [execution.price,execution.orderId], axis = 1)
                 self.executedOrderIds.append(execution.orderId)
                 
             elif (execution.side == "SLD") and (contract.symbol == self.contract.symbol):
                 
-                self.short_trades = np.insert(self.short_trades, len(self.short_trades), (execution.price))
+                size = np.shape(self.short_trades)
+                
+                self.short_trades = np.insert(self.short_trades, size[1], 
+                                              [execution.price,execution.orderId], axis = 1)
                 self.executedOrderIds.append(execution.orderId)
+                
+            
+            self.updateTradeDist()
+            
+    def updateTradeDist(self):
+        
+        lenS = np.shape(self.short_trades)[1]
+        lenL = np.shape(self.long_trades)[1]
+        
+        if (lenS > 0) and (lenL > 0):
+        
+            if lenL==lenS:
+                
+                self.tradeDist = self.short_trades[:][0]-self.long_trades[:][0]
+            
+            elif lenL>lenS:
+                
+                self.tradeDist = self.short_trades[:][0]-self.long_trades[:][0][:-1] 
+                
+            elif lenL<lenS:
+                
+                self.tradeDist = self.short_trades[:][0][1:]-self.long_trades[:][0]

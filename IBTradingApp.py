@@ -146,14 +146,14 @@ class TradingApp(TestWrapper, TestClient):
         
         if contract.symbol == self.contract.symbol:
             
-            print("Positions. Symbol:", contract.symbol, "Position:", position, "Avg cost:", avgCost)
+#            print("Positions. Symbol:", contract.symbol, "Position:", position, "Avg cost:", avgCost)
             
             if position > 0:
                 self.pos = True
             else:
                 self.pos = False
             
-            print("Long Position?: ", self.pos)
+#            print("Long Position?: ", self.pos)
     """
     Overridden function: nextValidId
     
@@ -163,7 +163,7 @@ class TradingApp(TestWrapper, TestClient):
     def nextValidId(self, orderId):
         
         self.nextOrderId = orderId
-        print("NextValidId:", orderId)
+#        print("NextValidId:", orderId)
     
     """
     Self Made Function: run_strategy
@@ -223,7 +223,7 @@ class TradingApp(TestWrapper, TestClient):
     def orderStatus(self, orderId, status, filled, remaining, avgFillPrice, permId,
                     parentId, lastFillPrice, clientId, whyHeld, mktCapPrice):
         
-        print("OrderStatus. Id:", orderId, "Status:", status, "Filled:", filled)
+#        print("OrderStatus. Id:", orderId, "Status:", status, "Filled:", filled)
         
         if orderId == self.currentOrderId:
             
@@ -237,7 +237,7 @@ class TradingApp(TestWrapper, TestClient):
                 self.noOpenOrders = True
                 self.currentOrderStatus = "Filled"
         
-        print("No Open Orders?: ", self.noOpenOrders)
+#        print("No Open Orders?: ", self.noOpenOrders)
     
     """
     Overridden Function: openOrder
@@ -249,8 +249,8 @@ class TradingApp(TestWrapper, TestClient):
     """
     def openOrder(self, orderId, contract, order, orderState):
         
-        print("Open Order. orderId:", orderId, "Symbol:", contract.symbol,
-              "Order Type:", order.action)
+#        print("Open Order. orderId:", orderId, "Symbol:", contract.symbol,
+#              "Order Type:", order.action)
         
         if orderId == self.currentOrderId:
             
@@ -271,8 +271,8 @@ class TradingApp(TestWrapper, TestClient):
     """
     def execDetails(self, reqId, contract, execution):
         
-        print("ExecDetails. OrderId:", execution.orderId, 
-              "Symbol:", contract.symbol, "Execution Price:", execution.price)
+#        print("ExecDetails. OrderId:", execution.orderId, 
+#              "Symbol:", contract.symbol, "Execution Price:", execution.price)
         
         if (execution.orderId not in self.executedOrderIds):
             
@@ -294,7 +294,13 @@ class TradingApp(TestWrapper, TestClient):
                 
             
             self.updateTradeDist()
-            
+    
+    """
+    Self Made Function: updateTradeDist
+    
+    This keeps track of the profit per trade made. Calculates profit by 
+    taking the price sold minus the price bought
+    """ 
     def updateTradeDist(self):
         
         lenS = np.shape(self.short_trades)[1]

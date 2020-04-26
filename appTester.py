@@ -19,11 +19,11 @@ qtCreatorFile = "IBTradingApp.ui" # Enter file here.
  
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
  
-class MyApp( QtWidgets.QMainWindow, Ui_MainWindow ):
+class TradingGUI( QtWidgets.QMainWindow, Ui_MainWindow ):
     
     def __init__(self, *args, **kwargs):
         
-        super(MyApp,self).__init__(*args,**kwargs)
+        super(TradingGUI,self).__init__(*args,**kwargs)
 #        QtGui.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
@@ -273,6 +273,6 @@ class WorkerThread(QtCore.QThread):
     
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
-    window = MyApp()
+    window = TradingGUI()
     window.show()
     sys.exit(app.exec_())
